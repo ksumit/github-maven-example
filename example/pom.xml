@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
+<!-- http://stackoverflow.com/questions/14013644/hosting-a-maven-repository-on-github -->
 	<groupId>com.github.kevinsawicki</groupId>
 	<artifactId>github-maven-example</artifactId>
 	<version>0.1-SNAPSHOT</version>
@@ -27,6 +27,14 @@
 		<connection>scm:git:git://github.com/ksumit/github-maven-example.git</connection>
 		<developerConnection>scm:git:git@github.com:ksumit/github-maven-example.git</developerConnection>
 	</scm>
+	<distributionManagement>
+		<repository>
+			<id>internal-repo</id>
+			<name>Temporary staging directory</name>
+			<url>file://${project.buildout.dir}/mvn-repo</url>
+		</repository>
+	</distributionManagement>
+
 
 	<developers>
 		<developer>
@@ -34,7 +42,7 @@
 			<name>Sumit Kumar</name>
 			<organization>[24]7 Inc</organization>
 			<organizationUrl>http://www.247-inc.com</organizationUrl>
-			<url>https://github.com/ksumit</url>
+			<url>http://www.sumitkumar.in</url>
 			<id>ksumit</id>
 			<timezone>+530</timezone>
 			<roles>
@@ -48,7 +56,7 @@
 		<!-- maven build plugins -->
 		<downloads-maven-plugin.version>0.6</downloads-maven-plugin.version>
 		<site-maven-plugin.version>0.7</site-maven-plugin.version>
-		<maven-site-plugin.version>3.0</maven-site-plugin.version>
+		<maven-site-plugin.version>3.1</maven-site-plugin.version>
 		<maven-checkstyle-plugin.version>2.6</maven-checkstyle-plugin.version>
 		<maven-surefire-report-plugin.version>2.6</maven-surefire-report-plugin.version>
 		<maven-javadoc-plugin.version>2.7</maven-javadoc-plugin.version>
@@ -62,6 +70,10 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
 
+		<!-- build related settings -->
+		<maven.build.timestamp.format>yyyyMMdd'T'HHmm</maven.build.timestamp.format>
+		<build.tag>${project.name}-${maven.build.timestamp}</build.tag>
+		<project.buildout.dir>${project.build.directory}/${build.tag}</project.buildout.dir>
 	</properties>
 
 	<build>
@@ -71,7 +83,7 @@
 				<artifactId>downloads-maven-plugin</artifactId>
 				<version>${downloads-maven-plugin.version}</version>
 				<configuration>
-					<description>Official ${project.name} build of the
+					<description>Official ${project.name} build - ${build.tag} for the
 						${project.version} release</description>
 					<override>true</override>
 					<includeAttached>true</includeAttached>
@@ -91,15 +103,24 @@
 				<artifactId>site-maven-plugin</artifactId>
 				<version>${site-maven-plugin.version}</version>
 				<configuration>
-					<message>Building site for ${project.version}</message>
+					<message>Maven artifacts for ${project.version}-${build.tag}</message>  <!-- git commit message -->
+					<noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
+					<description>Building site for ${project.name} - ${build.tag} for
+						the ${project.version} release</description>
 					<server>github</server>
+					<branch>refs/heads/mvn-repo</branch>
+					<includes>
+						<include>**/*</include>
+					</includes>
+					<repositoryName>github-maven-example</repositoryName>
+					<repositoryOwner>ksumit</repositoryOwner>
 				</configuration>
 				<executions>
 					<execution>
 						<goals>
 							<goal>site</goal>
 						</goals>
-						<phase>site</phase>
+						<phase>deploy</phase>
 					</execution>
 				</executions>
 			</plugin>

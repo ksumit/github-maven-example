@@ -1,0 +1,26 @@
+-classpath
+'d:/247-NETWORK-BACKUP/Work/GitRepo/github-maven-example/example/target/classes;d:/247-NETWORK-BACKUP/Work/GitRepo/github-maven-example/example/target/test-classes;C:/Users/sumit.kumar/.m2/repository/junit/junit/4.8/junit-4.8.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'d:/247-NETWORK-BACKUP/Work/GitRepo/github-maven-example/example/src/test/java'
+-author
+-bottom
+'Copyright &#169; 2013. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'d:/247-NETWORK-BACKUP/Work/GitRepo/github-maven-example/example/target/site/testapidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'GitHub Maven Plugin Example 0.1-SNAPSHOT Test API'
+-link
+'../apidocs'
+-link
+'http://java.sun.com/javase/6/docs/api'
+-use
+-version
+-windowtitle
+'GitHub Maven Plugin Example 0.1-SNAPSHOT Test API'

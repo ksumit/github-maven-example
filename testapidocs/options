@@ -1,17 +1,17 @@
 -classpath
-'/home/kevin/repositories/github-maven-example/example/target/classes:/home/kevin/repositories/github-maven-example/example/target/test-classes:/home/kevin/.m2/repository/junit/junit/4.8/junit-4.8.jar'
+'d:/247-NETWORK-BACKUP/Work/GitRepo/github-maven-example/example/target/classes;d:/247-NETWORK-BACKUP/Work/GitRepo/github-maven-example/example/target/test-classes;C:/Users/sumit.kumar/.m2/repository/junit/junit/4.8/junit-4.8.jar'
 -encoding
 'UTF-8'
 -protected
 -sourcepath
-'/home/kevin/repositories/github-maven-example/example/src/test/java'
+'d:/247-NETWORK-BACKUP/Work/GitRepo/github-maven-example/example/src/test/java'
 -author
 -bottom
-'Copyright &#169; 2012. All Rights Reserved.'
+'Copyright &#169; 2013. All Rights Reserved.'
 -charset
 'UTF-8'
 -d
-'/home/kevin/repositories/github-maven-example/example/target/site/testapidocs'
+'d:/247-NETWORK-BACKUP/Work/GitRepo/github-maven-example/example/target/site/testapidocs'
 -docencoding
 'UTF-8'
 -doctitle
